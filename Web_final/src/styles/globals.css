@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #020617;
+  --primary: #0047BB;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap&subset=arabic');
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    direction: rtl;
+    @apply antialiased;
+    line-height: 1.75;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Optimize Arabic Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cairo', sans-serif;
+    @apply font-black tracking-tighter leading-[1.1] text-slate-950;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    font-weight: 1000;
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    font-weight: 900;
+    letter-spacing: -0.025em;
+  }
+
+  h3 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-family: 'Cairo', sans-serif;
+    @apply leading-[1.85] text-gray-700;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Touch Optimization */
+  button, a, input, select, textarea {
+    @apply touch-manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Remove default underlines from links/buttons globally */
+  a, button {
+    text-decoration: none;
+  }
+
+  /* Remove default underlines from links/buttons globally */
+  a, button {
+    text-decoration: none;
+  }
+
+  /* Better Focus States for Accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary/50 ring-2 ring-primary/20;
+  }
+
+  /* Improved Text Selection */
+  ::selection {
+    @apply bg-primary/25 text-primary;
+  }
+
+  ::-moz-selection {
+    @apply bg-primary/25 text-primary;
+  }
+}
+
+/* Print helpers */
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-3xl border border-white/20 shadow-premium;
+  }
+  
+  .dark-card {
+    @apply bg-slate-950 border border-white/5 shadow-2xl;
+  }
+
+  .btn-premium {
+    @apply relative overflow-hidden transition-all duration-500 active:scale-95;
+  }
+}
+
+/* Custom Scrollbar - Premium Minimalist */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-50 rounded-full;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400 active:bg-gray-500 transition-all duration-300;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+::-webkit-scrollbar-thumb:active {
+  @apply bg-gray-500;
+}
+
+/* Mobile Scrollbar */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Leaflet Fixes */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: 10;
+  @apply filter grayscale-[0.5] contrast-[1.1];
+}
+
+/* Animations */
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-400 to-blue-400;
+}
+
+/* Loading States */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Print Styles */
+@media print {
+  * {
+    @apply text-black bg-white;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
